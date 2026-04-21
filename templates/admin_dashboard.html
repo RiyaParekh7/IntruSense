@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .view-section { display: none; animation: fadeIn 0.4s ease; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .dashboard-container { grid-template-columns: 260px 1fr; }
+        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #2d3748; margin-bottom: 20px; }
+        .admin-badge { background: rgba(255, 77, 77, 0.1); color: var(--risk-high); padding: 5px 15px; border-radius: 20px; border: 1px solid var(--risk-high); font-weight: bold; }
+        
+        /* User List styles */
+        .user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .user-card { background: #1a202c; border-radius: 10px; padding: 15px; border: 1px solid #2d3748; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        .user-card:hover { border-color: var(--accent-cyan); background: #232a3b; }
+        .user-icon { width: 35px; height: 35px; background: #2d3748; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+    </style>
+</head>
+<body data-role="admin">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h3 style="color:var(--accent-cyan); margin-bottom: 30px;">IntruSense <span style="font-size:0.8rem; color:var(--risk-high)">Admin</span></h3>
+            <nav id="sidebar-nav">
+                <a onclick="showView('overview')" class="nav-link active">🏢 System Overview</a>
+                <a onclick="showView('users')" class="nav-link">👥 User Management</a>
+                <a onclick="showView('risk')" class="nav-link">📊 Overall Risk</a>
+                <div style="margin-top: auto; padding-top: 50px;">
+                    <a href="/logout" style="color: var(--risk-high)">🚪 Logout</a>
+                </div>
+            </nav>
+        </aside>
+        <section id="alerts" class="view-section">
+    <div class="live-threat-panel">
+        <div class="panel-header">
+            <h3>Live Threat Detection Stream</h3>
+            <span class="status-badge-ongoing">System Scanning...</span>
+        </div>
+        
+        <table class="threat-table" id="live-alerts-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User/Activity</th>
+                    <th>Timestamp</th>
+                    <th>ML Severity</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+</section>
+        <main class="main-view">
+            <div class="top-header">
+                <h2>Admin Command Center</h2>
+                <div class="admin-badge">SYSTEM ADMIN</div>
+            </div>
+
+            <section id="overview" class="view-section active">
+    <div class="metric-card">
+        <h3>User Threat Overview</h3>
+        <table class="threat-table">
+            <tr>
+                <th>User</th>
+                <th>Last Login Time</th>
+                <th>Files</th>
+                <th>Transfer (MB)</th>
+                <th>ITS Score</th>
+                <th>Severity</th>
+            </tr>
+
+            {% for user in user_overview %}
+            <tr>
+                <td>
+                    {{ user.user }}
+                    {% if user.user == 'admin' %}
+                        <span style="color: var(--accent-cyan); font-size: 0.8rem;">(Admin)</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.time == '--' %}
+                        --
+                    {% else %}
+                        {{ user.time }}:00
+                    {% endif %}
+                </td>
+                <td>{{ user.files }}</td>
+                <td>{{ user.transfer }}</td>
+                <td>{{ user.score }}</td>
+                <td>
+                    <span class="critical-badge 
+    {% if user.severity == 'CRITICAL' %}badge-critical
+    {% elif user.severity == 'MEDIUM' %}badge-medium
+    {% else %}badge-normal
+    {% endif %}">
+    {{ user.severity }}
+</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+             <section id="manual-input" class="view-section">
+    <div class="live-threat-panel">
+        <div class="panel-header">
+            <h3>Predictive ML Sandbox</h3>
+            <span class="status-badge-ongoing" style="background:rgba(0,242,255,0.1); color:var(--accent-cyan); border-color:var(--accent-cyan);">Manual Entry Mode</span>
+        </div>
+        
+        <p style="color:var(--text-muted); margin-bottom: 20px;">Enter activity parameters to test the Isolation Forest anomaly detection.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="input-group">
+                <label style="display:block; margin-bottom:8px;">Access Hour (0-23)</label>
+                <input type="number" id="m_hour" class="metric-card" style="width:100%; color:white;" placeholder="e.g. 3">
+            </div>
+            <div class="input-group">
+                <label style="display:block; margin-bottom:8px;">Files Accessed</label>
+                <input type="number" id="m_files" class="metric-card" style="width:100%; color:white;" placeholder="e.g. 85">
+            </div>
+            <div class="input-group">
+                <label style="display:block; margin-bottom:8px;">Data Transfer (MB)</label>
+                <input type="number" id="m_transfer" class="metric-card" style="width:100%; color:white;" placeholder="e.g. 4500">
+            </div>
+            <div class="input-group">
+                <label style="display:block; margin-bottom:8px;">Device Type (1-3)</label>
+                <input type="number" id="m_device" class="metric-card" style="width:100%; color:white;" placeholder="1:PC, 2:Mob, 3:Unknown">
+            </div>
+        </div>
+
+        <button onclick="runManualAnalysis()" class="login-btn" style="margin-top: 20px; width: 100%;">Run AI Analysis →</button>
+
+        <div id="result-box" style="display:none; margin-top: 25px; padding: 20px; border-radius: 12px; text-align: center;">
+            <h4 id="result-text" style="margin:0; font-size: 1.2rem;"></h4>
+            <p id="result-score" style="margin: 5px 0 0 0; color: var(--text-muted);"></p>
+        </div>
+    </div>
+</section>
+            <section id="users" class="view-section">
+                <h2>Monitored Users</h2>
+                <p style="color:var(--text-muted)">Select a user to view their specific behavior profile (Simulation).</p>
+                <div class="user-grid">
+                    {% for user in all_users %}
+                    <div class="user-card">
+                        <div class="user-icon">👤</div>
+                        <div>
+                            <div style="font-weight:600;">{{ user }}</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted);">Standard User</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section id="risk" class="view-section">
+                <h2>Overall System Risk Analysis</h2>
+                <div class="grid" style="display:grid; grid-template-columns: 2fr 1fr; gap:20px; margin-top: 20px; align-items: stretch;">
+    <div class="metric-card" style="height: 420px;">
+        <h3>System-Wide ITS Score Trend</h3>
+        <div style="position: relative; height: 320px; width: 100%;">
+            <canvas id="itsChart"></canvas>
+        </div>
+    </div>
+
+    <div class="metric-card" style="height: 420px;">
+        <h3>Global Risk Distribution</h3>
+        <div style="position: relative; height: 320px; width: 100%;">
+            <canvas id="riskPieChart"></canvas>
+        </div>
+    </div>
+</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

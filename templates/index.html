@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>IntruSense | AI Security</title>
+</head>
+<body>
+    <nav style="display: flex; justify-content: space-between; padding: 20px 5%;">
+        <div class="logo">
+    <h1>IntruSense</h1>
+    <p class="tagline">Insider Threat Detection</p>
+</div>
+        <a href="/login" class="btn login-btn">Login →</a>
+    </nav>
+
+    <section class="hero-section">
+    <div class="hero-layout">
+        <div class="hero-text">
+            <h1 style="font-size: 3rem; margin-bottom: 20px;">Detect Insider Threats <br><span style="color: var(--accent-cyan);">Before They Strike</span></h1>
+            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px;">Advanced AI/ML-powered platform that identifies suspicious behavior patterns, analyzes user activities, and prevents security breaches in real-time.</p>
+            
+
+            <div class="simple-stats">
+                <div class="stat-item"><h2>94.5%</h2><p>Detection Accuracy</p></div>
+                <div class="stat-item"><h2>&lt;1s</h2><p>Response Time</p></div>
+                <div class="stat-item"><h2>1000+</h2><p>Events Analyzed</p></div>
+            </div>
+        </div>
+
+        <div class="live-threat-panel">
+            <div class="panel-header">
+                <h3>Live Threat Detection</h3>
+                <span class="active-pill">● Active</span>
+            </div>
+            
+            <div class="threat-row">
+                <div class="row-icon" style="color: #ff4d4d;">⚠️</div>
+                <div class="row-text"><h4>High Risk Activity</h4><p>Off-hours file access detected</p></div>
+                <div class="its-score">ITS: 89</div>
+            </div>
+
+            <div class="threat-row">
+                <div class="row-icon" style="color: #ffc107;">⚡</div>
+                <div class="row-text"><h4>Anomaly Detected</h4><p>Unusual email patterns</p></div>
+                <div class="its-score">ITS: 67</div>
+            </div>
+
+            <div class="threat-row">
+                <div class="row-icon" style="color: #22c55e;">✅</div>
+                <div class="row-text"><h4>Normal Activity</h4><p>Standard user behavior</p></div>
+                <div class="its-score">ITS: 23</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Features Section with Header Line -->
+    <section class="features-section" style="padding: 80px 5%; position: relative;">
+        <!-- Comprehensive Security Features Line -->
+        <div style="text-align: center; margin-bottom: 60px; position: relative;">
+            <h2 style="font-size: 2.2rem; color: var(--accent-cyan); margin: 0; font-weight: 700; letter-spacing: 1px;">Comprehensive Security Features</h2>
+            <div style="height: 3px; background: linear-gradient(90deg, transparent 0%, var(--accent-cyan) 50%, transparent 100%); width: 200px; margin: 15px auto 0; border-radius: 2px;"></div>
+        </div>
+        
+        <div class="features" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <div class="metric-card" style="padding: 30px 25px; text-align: center; height: 80%; border-radius: 16px; transition: transform 0.3s ease;">
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">AI/ML Detection</h3>
+                <p style="color: #f5f1f1; line-height: 1.6;text-align: left;">Isolation Forest - detect unusual user behavior.</p>
+            </div>
+            <div class="metric-card" style="padding: 30px 25px; text-align: center; height: 80%; border-radius: 16px; transition: transform 0.3s ease;">
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Activity Monitoring</h3>
+                <p style="color: #f5f1f1; line-height: 1.6;text-align: left;">Continuously monitors user actions like logins, file access, and failed attempts to detect anomalies instantly.</p>
+            </div>
+            <div class="metric-card" style="padding: 30px 25px; text-align: center; height: 80%; border-radius: 16px; transition: transform 0.3s ease;">
+                <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">User Intelligence</h3>
+                <p style="color: #f5f1f1;line-height: 1.6;text-align: left;">Behavioral profiling analytics and flags deviations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full-Width Integrated FAQ Section -->
+    <section class="faq-section" style="padding: 80px 5%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin-top: -40px; position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <h2 style="font-size: 2.5rem; color: #1a1a1a; margin-bottom: 15px; font-weight: 700;">Frequently Asked Questions</h2>
+            <p style="font-size: 1.15rem; color: #666; line-height: 1.6;">Quick answers about IntruSense</p>
+        </div>
+
+        <div class="faq-container" style="max-width: 900px; margin: 0 auto;">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is IntruSense?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>AI-powered security platform that monitors user activity and detects potential <strong>insider threats</strong> by analyzing behavior patterns in <strong>real time</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does IntruSense detect threats?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Uses <strong>machine learning algorithms</strong> to identify unusual behavior such as irregular login times, abnormal data transfers, or suspicious activity patterns.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is an Insider Threat?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Risk posed by individuals <strong>within an organization</strong> (employees or contractors) who may <strong>misuse their access</strong> to sensitive data.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the ITS Score?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>ITS (Insider Threat Score)</strong> is a numerical value indicating the <strong>level of risk</strong> associated with a user's activity. <strong>Higher scores = higher risk</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does IntruSense monitor users in real time?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Yes</strong>, continuously analyzes activity and updates alerts and dashboards <strong>dynamically</strong> to reflect real-time behavior.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my data secure with IntruSense?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Yes</strong>, designed with security in mind. Focuses on detecting threats <strong>without exposing sensitive information</strong> unnecessarily.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need technical knowledge to use this platform?</span>
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>No</strong>, dashboard is <strong>simple and user-friendly</strong> for both technical and non-technical users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript (unchanged) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    const isOpen = item.classList.contains('active');
+                    
+                    faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    
+                    if (!isOpen) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Feature card hover effect
+            document.querySelectorAll('.metric-card').forEach(card => {
+                card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-8px)');
+                card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
+            });
+        });
+    </script>
+
+    <!-- Enhanced CSS (unchanged from previous compact version) -->
+    <style>
+        .faq-item {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5e9;
+        }
+        /* Login Button Styling */
+    .login-btn {
+    display: inline-block;
+    background: var(--accent-cyan);
+    color: #0b0f19;
+    padding: 12px 20px;
+    height: 20px;
+    border-radius: 4px; /* makes it rectangular */
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+   }
+
+    /* Hover effect */
+   .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4);
+    }
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: #f0f2f5;
+            color: var(--hover-click,#3b82f6);
+        }
+
+        .faq-icon {
+            transition: all 0.3s ease;
+            color: #6c757d;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: #3b82f6;
+        }
+
+        .faq-item.active .faq-question {
+            background: linear-gradient(135deg,var(--hover-click,#3b82f6) 0%, #00b8d4 100%);
+            color: white;
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 120px;
+            padding: 16px 24px 20px;
+            opacity: 1;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            color: #5a6c7d;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</body>
+</html>

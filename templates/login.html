@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Login | IntruSense</title>
+    <style>
+        /* Keep your existing style block verbatim... */
+        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1e293b 0%, #0b0f19 100%); margin: 0; }
+        .login-container { width: 100%; max-width: 450px; padding: 20px; padding-top: 150px; }
+        .login-card { background: rgba(22, 27, 43, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .brand-logo { color: var(--accent-cyan); font-size: 1.8rem; font-weight: 600; margin-bottom: 5px; }
+        .tagline { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; }
+        .login-stats { display: flex; justify-content: space-around; margin-bottom: 30px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; }
+        .stat-item h4 { margin: 0; color: var(--accent-cyan); font-size: 1.2rem; }
+        .stat-item p { margin: 0; font-size: 0.75rem; color: var(--text-muted); }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label { display: block; color: var(--text-muted); margin-bottom: 8px; font-size: 0.85rem; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 15px; background: #0b0f19; border: 1px solid #2d3748; border-radius: 8px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); }
+        .login-btn { width: 100%; padding: 14px; background: var(--accent-cyan); color: #0b0b19; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 1rem; margin-top: 10px; }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4); }
+        .footer-note { margin-top: 25px; font-size: 0.75rem; color: var(--text-muted); }
+        .back-home { display: inline-block; margin-top: 20px; color: var(--accent-cyan); text-decoration: none; font-size: 0.85rem; }
+        /* Add error message styling */
+        .error-msg { color: #ff4d4d; background: rgba(255,77,77,0.1); padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="brand-logo">IntruSense</div>
+            <div class="tagline">Insider Threat Detection</div>
+            
+            <h2 style="margin-bottom: 10px;">Security Portal</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px;">
+                Sign in to access your security dashboard.
+            </p>
+
+            {% if error %}
+            <div class="error-msg">{{ error }}</div>
+            {% endif %}
+
+            <div class="login-stats">
+                <div class="stat-item">
+                    <h4>Demo</h4>
+                    <p>Accounts</p>
+                </div>
+                <div class="stat-item" style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
+                    <h4>User/Admin</h4>
+                    <p>Roles</p>
+                </div>
+            </div>
+
+            <form action="/login" method="POST">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="abhinav or admin" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="password123 or admin123" required>
+                </div>
+                <div class="input-group">
+                    <label>Login As</label>
+                    <select name="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">Standard User</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="login-btn">Login →</button>
+            </form>
+
+            <p class="footer-note">Demo Credentials: abhinav/password123 (User) or admin/admin123 (Admin)</p>
+            <a href="/" class="back-home">← Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
